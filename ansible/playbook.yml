@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - role: elastic.elasticsearch
+      vars:
+        es_instance_name: "graylog"
+        es_action_auto_create_index: false
+        es_api_basic_auth_username: "admin"
+        es_api_basic_auth_password: "!Passw0rd"
+    - role: undergreen.mongodb
+      vars:
+        mongodb_version: "3.6"
+        mongodb_package: "mongodb"
